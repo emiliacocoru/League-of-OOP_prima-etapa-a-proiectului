@@ -36,7 +36,7 @@ public final class Pyromancer extends Player {
             landAmplifier();
             fireBlast = (int) Math.round(damageInitial
                     * helper.getFireBlastAmplifierPK() * landAmplifier);
-            player.setReceivedDamage(damageInitial * landAmplifier);
+            player.setReceivedDamageWRA(damageInitial * landAmplifier);
             player.setDamageThisRound(fireBlast);
         }
 
@@ -45,7 +45,7 @@ public final class Pyromancer extends Player {
             landAmplifier();
             fireBlast = (int) Math.round(damageInitial
                     * helper.getFireBlastAmplifierPP() * landAmplifier);
-            player.setReceivedDamage(damageInitial * landAmplifier);
+            player.setReceivedDamageWRA(damageInitial * landAmplifier);
             player.setDamageThisRound(fireBlast);
 
         }
@@ -56,7 +56,7 @@ public final class Pyromancer extends Player {
             landAmplifier();
             fireBlast = (int) Math.round(damageInitial
                     * helper.getFireBlastAmplifierPR() * landAmplifier);
-            player.setReceivedDamage((int) Math.round(damageInitial * landAmplifier));
+            player.setReceivedDamageWRA((int) Math.round(damageInitial * landAmplifier));
             player.setDamageThisRound(fireBlast);
 
         }
@@ -66,7 +66,7 @@ public final class Pyromancer extends Player {
             landAmplifier();
             fireBlast = (int) Math.round(damageInitial
                     * helper.getFireBlastAmplifierPW() * landAmplifier);
-            player.setReceivedDamage(damageInitial * landAmplifier);
+            player.setReceivedDamageWRA(damageInitial * landAmplifier);
             player.setDamageThisRound(fireBlast);
 
         }
@@ -92,7 +92,7 @@ public final class Pyromancer extends Player {
                    * helper.getIgniteAmplifierPK() * landAmplifier);
             player.setDamageExtra((int) Math.round(player.getDamageExtra()
                     * helper.getIgniteAmplifierPK() * landAmplifier));
-            player.setReceivedDamage(player.getReceivedDamage()
+            player.setReceivedDamageWRA(player.getReceivedDamageWRA()
                     + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + ignite);
 
@@ -106,7 +106,7 @@ public final class Pyromancer extends Player {
                     * helper.getFireBlastAmplifierPP() * landAmplifier);
             player.setDamageExtra((int) Math.round(player.getDamageExtra()
                     * helper.getFireBlastAmplifierPP() * landAmplifier));
-            player.setReceivedDamage(player.getReceivedDamage()
+            player.setReceivedDamageWRA(player.getReceivedDamageWRA()
                     + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + ignite);
         }
@@ -118,7 +118,7 @@ public final class Pyromancer extends Player {
             ignite = (int) Math.round(baseDamage * helper.getIgniteAmplifierPR() * landAmplifier);
             player.setDamageExtra((int) Math.round(player.getDamageExtra()
                      * helper.getIgniteAmplifierPR() * landAmplifier));
-            player.setReceivedDamage(player.getReceivedDamage()
+            player.setReceivedDamageWRA(player.getReceivedDamageWRA()
                     + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + ignite);
         }
@@ -130,7 +130,7 @@ public final class Pyromancer extends Player {
             ignite = (int) Math.round(baseDamage * helper.getIgniteAmplifierPW() * landAmplifier);
             player.setDamageExtra((int) Math.round(player.getDamageExtra()
                     * helper.getFireBlastAmplifierPW() * landAmplifier));
-            player.setReceivedDamage(player.getReceivedDamage()
+            player.setReceivedDamageWRA(player.getReceivedDamageWRA()
                     + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + ignite);
         }

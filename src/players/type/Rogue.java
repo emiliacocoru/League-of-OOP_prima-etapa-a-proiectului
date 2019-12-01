@@ -66,7 +66,7 @@ public final class Rogue extends Player {
              backStabWithBonus();
              backStabDamage = (int) Math.round(damageInitial * percent
                       * helper.getBackStabAmplifierRK() * landAmplifier);
-             player.setReceivedDamage((int) Math.round(damageInitial * landAmplifier));
+             player.setReceivedDamageWRA((int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
@@ -76,7 +76,7 @@ public final class Rogue extends Player {
              backStabWithBonus();
              backStabDamage = (int) Math.round(damageInitial * percent
                      * helper.getBackStabAmplifierRP() * landAmplifier);
-             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
+             player.setReceivedDamageWRA((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
@@ -86,7 +86,7 @@ public final class Rogue extends Player {
              backStabWithBonus();
              backStabDamage = (int) Math.round(damageInitial * percent
                      * helper.getBackStabAmplifierRR() * landAmplifier);
-             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
+             player.setReceivedDamageWRA((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
@@ -96,7 +96,7 @@ public final class Rogue extends Player {
              backStabWithBonus();
              backStabDamage = (int) Math.round(damageInitial * percent
                      * helper.getBackStabAmplifierRW() * landAmplifier);
-             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
+             player.setReceivedDamageWRA((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
      }
@@ -111,7 +111,7 @@ public final class Rogue extends Player {
              extra();
              damageParalysis = (int) Math.round(damageInitial
                      * helper.getParalysisAmplifierRK() * landAmplifier);
-             player.setReceivedDamage(player.getReceivedDamage()
+             player.setReceivedDamageWRA(player.getReceivedDamageWRA()
                      + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
@@ -126,7 +126,7 @@ public final class Rogue extends Player {
                      * helper.getParalysisAmplifierRP() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage((player.getReceivedDamage())
+             player.setReceivedDamageWRA((player.getReceivedDamageWRA())
                      + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);
@@ -139,7 +139,7 @@ public final class Rogue extends Player {
                      * helper.getParalysisAmplifierRR() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage((player.getReceivedDamage())
+             player.setReceivedDamageWRA((player.getReceivedDamageWRA())
                      + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);
@@ -153,7 +153,7 @@ public final class Rogue extends Player {
                     * helper.getBackStabAmplifierRW() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage((player.getReceivedDamage())
+             player.setReceivedDamageWRA((player.getReceivedDamageWRA())
                      + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);

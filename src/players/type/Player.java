@@ -6,15 +6,23 @@ public abstract class Player {
     private int xp = 0;
     private int level = 0;
     private int maxHP;
+    // depending on the level,maxHP is the greatest hp a player can have
     private int lineMap;
     private int columnMap;
+    // lineMap and columnMap are the coordinates of the player
     private int damageExtra = 0;
     private int extraRounds = 0;
+    // damageExtra and extraRounds are for overtime damage
     private int damageThisRound = 0;
-    private double receivedDamage = 0;
+    // damageThisRound = all the damage a player receive
+    // with land amplifier, bonus damage, race amplifier and so on
+    private double receivedDamageWRA = 0;
+    // receivedDamage = the damage a player receive without race amplifier
     private int incapacityOfMovement = 0;
     private int wasFighting = 0;
     private int dead = 0;
+    // dead = 0 --> the player is still in the game
+    // dead = 1 --> the player was eliminated
 
     public Player(final char type) {
         this.type = type;
@@ -22,6 +30,14 @@ public abstract class Player {
 
     public Player() {
 
+    }
+    public abstract void accept(PlayerVisitor player);
+
+    public final void poisonDamage(final Player player) {
+        if (player.getExtraRounds() > 0) {
+            player.setHp(player.getHp() - player.getDamageExtra());
+            player.setExtraRounds(player.getExtraRounds() - 1);
+        }
     }
 
     public final char getType() {
@@ -80,14 +96,6 @@ public abstract class Player {
         this.maxHP = maxHP;
     }
 
-    public abstract void accept(PlayerVisitor player);
-
-    public final void poisonDamage(final Player player) {
-        if (player.getExtraRounds() > 0) {
-            player.setHp(player.getHp() - player.getDamageExtra());
-            player.setExtraRounds(player.getExtraRounds() - 1);
-        }
-    }
 
     public final int getDamageExtra() {
         return damageExtra;
@@ -113,12 +121,12 @@ public abstract class Player {
         this.damageThisRound = damageThisRound;
     }
 
-    public final double getReceivedDamage() {
-        return receivedDamage;
+    public final double getReceivedDamageWRA() {
+        return receivedDamageWRA;
     }
 
-    public final void setReceivedDamage(final double receivedDamage) {
-        this.receivedDamage = receivedDamage;
+    public final void setReceivedDamageWRA(final double receivedDamageWRA) {
+        this.receivedDamageWRA = receivedDamageWRA;
     }
 
     public final int getIncapacityOfMovement() {

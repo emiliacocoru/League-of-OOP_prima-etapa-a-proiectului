@@ -4,7 +4,7 @@ import players.type.Player;
 
 public final class Move {
 
-    public void move(final Player player, final char typeOfMove) {
+    public void makeMove(final Player player, final char typeOfMove) {
         if (typeOfMove == 'R') {
            player.setColumnMap(player.getColumnMap() + 1);
         }
