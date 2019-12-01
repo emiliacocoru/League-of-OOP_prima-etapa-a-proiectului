@@ -1,0 +1,48 @@
+Cocoru Emilia Iuliana 322CA
+
+Pentru realizarea primei parti a proiectului am creat un Double Dispatch cu:
+
+- un visitor pattern pe care l-am folosit pentru a aplica diferite tipuri de abilitati
+ pe toate tipurile de jucatori. Astfel clasa mea Player este o clasa abstracta
+ (ea joaca rolul de Visitable), deoarece defineste metoda abstacta 
+ "public void accept(PlayerVisitor Player)" ce este implementata in toate cele 
+ 4 categori de eroi : Knight, Rogue, Wizard, Pyromancer.
+
+- fiecara clasa de jucator are cele doua abilitati specifice acestuia ca si 
+clase interne.Aceste clase implementeaza interfata PlayerVisitor, 
+astfel incat se poate aplica metoda respectiva fara a fii necesar 
+sa facem downcasting de fiecare data.
+
+- in clasa Fight m-am folosit de implementarea pattern-ului visitor.
+Am gasit abilitati ce apartin primului jucator, iar apoi le-am aplicat 
+celui de-al doilea fara a ma interesa tipul acestuia.
+
+Proiectul este structurat astfel:
+
+-constants-->class Constants(detine toate constantele din cerinta)
+|
+-gameplan-->class Fight(un jucator isi "aplica abilitatile" asupra celui de-al doilea)
+|		|-->class GetXPandMaybeLevelUP(atunci cand un jucator castiga,
+|							primeste xp si creste in nivel, daca este cazul)
+|		|-->class LookingforPlayersInTheSameSpot(verifica daca 
+|							doi jucatori sunt in acelasi loc pe harta si se confrunta)
+|		|-->class Move(modifica pozitia jucatorului
+|							in functie de miscarea pe care vrea sa o faca)
+|		|-->class TypeOFLand(contine harta jocului cu toate
+|							tipurile de teren specifice fiecarei portiuni)
+|
+-main-->class Main
+|
+-players-->type-->class Knight cu clase interne Execute si Slam
+|				-->class Pyromancer cu clase interne FireBlast si Ignite
+|				-->class Roque cu clase interne BackStab si Paralysis
+|				-->classWizard cu clase interne Deflect si Drain
+|		-->visitor--> interface PlayerVisitor 
+|		-->class abstract Player(contine toate datele necesare unui jucator)
+|		-->class PlayerFactory(imi creeaza tipul de jucator in functie de caracterul sau)
+|
+-readinput-->class StartGame(imi preia datele din fisierul "something.in");
+
+Legat de Git, am incercat sa folosesc GitLab, dar imi spunea ca nu am anumite drepturi(sau cel putin eu 
+asta am inteles din ce imi aparea acolo) si mi-am dat seama destul de tarziu cum sa folosesc combinatia 
+Git IntelliJ si GitHub(dar macar am inteles in final).
