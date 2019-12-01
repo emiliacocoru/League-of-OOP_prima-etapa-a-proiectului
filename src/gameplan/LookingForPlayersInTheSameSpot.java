@@ -6,11 +6,13 @@ import java.util.ArrayList;
 
 public final class LookingForPlayersInTheSameSpot {
     public void lookingForPlayersInTheSameSpot(final ArrayList<Player> players) {
-        Fight fight = new Fight();
+        Fight battle = new Fight();
         Player firstPlayer = null;
         Player secondPlayer = null;
-        GetXPandMAXLEVEL lv = new GetXPandMAXLEVEL();
-
+        GetXPandMaybeLevelUP lv = new GetXPandMaybeLevelUP();
+        // finds two players in the same place on the map
+        // if the players are alive and they didn't fight
+        // they will face each other
         for (int p = 0; p < players.size(); p++) {
             firstPlayer = players.get(p);
             if (firstPlayer.getWasFighting() == 0 && firstPlayer.getDead() == 0) {
@@ -22,12 +24,14 @@ public final class LookingForPlayersInTheSameSpot {
                             if (firstPlayer.getColumnMap() == secondPlayer.getColumnMap()) {
                                 secondPlayer.setWasFighting(1);
                                 firstPlayer.setWasFighting(1);
+                                // if the first player is a wizard
+                                // the second player "will attack" first
                                 if (firstPlayer.getType() == 'W') {
-                                    fight.fight(secondPlayer, firstPlayer);
-                                    fight.fight(firstPlayer, secondPlayer);
+                                    battle.fight(secondPlayer, firstPlayer);
+                                    battle.fight(firstPlayer, secondPlayer);
                                 } else {
-                                    fight.fight(firstPlayer, secondPlayer);
-                                    fight.fight(secondPlayer, firstPlayer);
+                                    battle.fight(firstPlayer, secondPlayer);
+                                    battle.fight(secondPlayer, firstPlayer);
                                 }
                                 firstPlayer.setHp(firstPlayer.getHp()
                                         - firstPlayer.getDamageThisRound());
@@ -39,6 +43,8 @@ public final class LookingForPlayersInTheSameSpot {
                                 if (firstPlayer.getHp() < 0) {
                                     firstPlayer.setDead(1);
                                 }
+                                // if one manages to kill the other,
+                                // he receives xp and is able to level up
                                 if (firstPlayer.getDead() == 0 && secondPlayer.getDead() == 1) {
                                     lv.getXP(firstPlayer, secondPlayer);
                                     lv.xpLevelUp(firstPlayer);

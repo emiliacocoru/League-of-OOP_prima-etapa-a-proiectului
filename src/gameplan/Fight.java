@@ -8,7 +8,6 @@ import players.type.Player;
 
 public final class Fight {
     public void fight(final Player firstPlayer, final Player secondPlayer) {
-
         if (firstPlayer.getType() == 'K') {
             Knight.Execute firstAction = ((Knight) firstPlayer).new Execute();
             Knight.Slam secondAction = ((Knight) firstPlayer).new Slam();

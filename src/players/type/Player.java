@@ -6,7 +6,7 @@ public abstract class Player {
     private int xp = 0;
     private int level = 0;
     private int maxHP;
-    // depending on the level,maxHP is the greatest hp a player can have
+    // depending on the level, maxHP is the greatest hp a player can have
     private int lineMap;
     private int columnMap;
     // lineMap and columnMap are the coordinates of the player
@@ -32,7 +32,6 @@ public abstract class Player {
 
     }
     public abstract void accept(PlayerVisitor player);
-
     public final void poisonDamage(final Player player) {
         if (player.getExtraRounds() > 0) {
             player.setHp(player.getHp() - player.getDamageExtra());

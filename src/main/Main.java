@@ -26,8 +26,7 @@ public final class Main {
         Move moves = new Move();
         LookingForPlayersInTheSameSpot theyFight = new LookingForPlayersInTheSameSpot();
         // for each round, each player moves
-        // a player moves if he is not under the action of a damage of movement
-        // from the last round/rounds
+        // only if he is not affected by inability to move
         for (int i = 0; i < rounds; i++) {
             for (int j = 0; j < participants; j++) {
                 if (players.get(j).getIncapacityOfMovement() == 0) {
@@ -38,7 +37,7 @@ public final class Main {
                 }
             }
             // each player receives the damage from the last round
-            // if it`s the case
+            // if it is the case
             for (int w = 0; w < participants; w++) {
                 players.get(w).poisonDamage(players.get(w));
                 if (players.get(w).getHp() <= 0) {

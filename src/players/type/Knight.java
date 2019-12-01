@@ -22,18 +22,20 @@ public final  class Knight extends Player {
 
     private TypeOfLand land = new TypeOfLand();
     private char[][] gameMap = land.getMap();
-
+    // check if is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'L') {
             landAmplifier = helper.getLandAmplifierK();
         }
     }
-
+    // first power
     public final class Execute implements PlayerVisitor {
         private int damageExecuteInitial = helper.getExecuteDamage()
                 + helper.getExecuteDamagePerLevel() * getLevel();
         private int execute = 0;
         private int hpLimit = 0;
+        // calculates the minimum hp required for a player
+        // in order not to be killed instantly
         public void findHPLimit(final Player player) {
             if (helper.getExecutePercentPerLevel()
                     * player.getLevel() > helper.getExecutePercent()) {

@@ -18,11 +18,13 @@ public final class Wizard extends Player {
     public void accept(final PlayerVisitor player) {
         player.visit(this);
     }
+    // check if is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'D') {
             landAmplifier = helper.getLandAmplifierW();
         }
     }
+    // first power
     public final class Drain implements PlayerVisitor {
         private double baseHP =  0;
         private int damageDrain = 0;
@@ -30,8 +32,6 @@ public final class Wizard extends Player {
                 + getLevel() * helper.getDrainDamagePerLevel();
         public void baseHP(final Player player) {
             baseHP = Math.min(helper.getDrainPercent() * player.getMaxHP(), player.getHp());
-            System.out.println(baseHP);
-
         }
 
         @Override
@@ -76,7 +76,7 @@ public final class Wizard extends Player {
 
         }
     }
-
+    // second power
     public final class Deflect implements PlayerVisitor {
         private double percentDamage = helper.getDeflectPercent()
                  + helper.getDeflectPercentPerLevel() * getLevel();
@@ -123,7 +123,7 @@ public final class Wizard extends Player {
             calculatePercent(player);
             landAmplifier();
             player.setExtraRounds(0);
-            player.setDamageThisRound(player.getDamageThisRound() + 0);
+            player.setDamageThisRound(player.getDamageThisRound());
         }
     }
 }

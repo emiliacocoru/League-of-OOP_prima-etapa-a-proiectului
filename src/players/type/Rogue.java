@@ -18,6 +18,8 @@ public final class Rogue extends Player {
         setHp(helper.getHpInitialRogue());
     }
 
+    // check if is a land amplifier or not
+    // and if there are 3 or 6 overtime damage rounds
     public void extra() {
         if (gameMap[getLineMap()][getColumnMap()] == 'W') {
             landAmplifier = helper.getLandAmplifierR();
@@ -41,12 +43,13 @@ public final class Rogue extends Player {
     public void accept(final PlayerVisitor player) {
         player.visit(this);
     }
-
+     // first power
      public final class BackStab implements PlayerVisitor {
         private int damageInitial = helper.getBachStabBaseDamage()
                  + helper.getBacKStabBaseDamagePerLevel() * getLevel();
         private int backStabDamage = 0;
         private double percent = 1.0;
+
 
         public void backStabWithBonus() {
             if (numberOfHits % helper.getHitsNumber() == 0) {
@@ -100,7 +103,7 @@ public final class Rogue extends Player {
              player.setDamageThisRound(backStabDamage);
          }
      }
-
+     // second power
      public final class Paralysis implements PlayerVisitor {
          private int damageInitial = (helper.getParalysisDamage())
                  + helper.getParalysisDamagePerLevel() * getLevel();

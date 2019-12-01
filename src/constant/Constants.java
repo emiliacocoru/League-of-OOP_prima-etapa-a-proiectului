@@ -3,7 +3,7 @@ package constant;
 public final class Constants {
     public Constants() {
     }
-
+    // here are all the constants taken from the requirement
     private final int hpInitialKnight = 900;
     private final int hpInitialRogue = 600;
     private final int hpInitialPyromancer = 500;

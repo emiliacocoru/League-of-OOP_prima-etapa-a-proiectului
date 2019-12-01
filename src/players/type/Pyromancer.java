@@ -15,6 +15,7 @@ public final class Pyromancer extends Player {
     private TypeOfLand land = new TypeOfLand();
     private char[][] gameMap = land.getMap();
 
+    // check if is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'V') {
             landAmplifier = helper.getLandAmplifierP();
@@ -25,7 +26,7 @@ public final class Pyromancer extends Player {
     public void accept(final PlayerVisitor player) {
         player.visit(this);
     }
-
+    // first power
     public final class FireBlast implements PlayerVisitor {
         private int damageInitial = helper.getFireBlastBaseDamage()
                 + helper.getGetFireBlastBaseDamagePerLevel() * getLevel();
@@ -71,7 +72,7 @@ public final class Pyromancer extends Player {
 
         }
     }
-
+    // second power
     public final class Ignite implements PlayerVisitor {
         private int baseDamage = helper.getIgniteDamage()
                 + helper.getIgniteDamagePerLevel() * getLevel();
