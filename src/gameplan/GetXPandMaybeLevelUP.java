@@ -5,8 +5,8 @@ import players.Player;
 
 public final class GetXPandMaybeLevelUP {
     private Constants helper = new Constants();
-    // when a player win
-    // he receives xp according to the formula below
+    /* when a player win
+       he receives xp according to the formula below */
     public void getXP(final Player winner, final Player loser) {
         winner.setXp(winner.getXp() + max(0, helper.getXpValue()
                  - ((winner.getLevel() - loser.getLevel()) * helper.getXpPerLevelValue())));

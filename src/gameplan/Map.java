@@ -1,11 +1,11 @@
 package gameplan;
 
-public final class TypeOfLand {
+public final class Map {
     private static char[][] map;
-    public TypeOfLand() {
+    public Map() {
 
     }
-    public TypeOfLand(final int line, final int column) {
+    public Map(final int line, final int column) {
         map = new char[line][column];
     }
 

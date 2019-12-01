@@ -25,8 +25,8 @@ public final class Main {
         ArrayList<String> movesRounds = startGame.getMoves();
         Move moves = new Move();
         LookingForPlayersInTheSameSpot theyFight = new LookingForPlayersInTheSameSpot();
-        // for each round, each player moves
-        // only if he is not affected by inability to move
+        /* for each round, each player moves
+            only if he is not affected by inability to move */
         for (int i = 0; i < rounds; i++) {
             for (int j = 0; j < participants; j++) {
                 if (players.get(j).getIncapacityOfMovement() == 0) {
@@ -46,8 +46,8 @@ public final class Main {
             }
             // two players in thw same spot will fight
             theyFight.lookingForPlayersInTheSameSpot(players);
-            // the wasFighting variable is to prevent a player
-            // not to fight twice in a round
+            /* the wasFighting variable is to prevent a player
+               not to fight twice in a round */
             // when is 0, he did not fight
             // when is 1, he fought
             for (Player x : players) {

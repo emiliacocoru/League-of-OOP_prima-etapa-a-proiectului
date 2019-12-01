@@ -1,7 +1,7 @@
 package players.type;
 
 import constant.Constants;
-import gameplan.TypeOfLand;
+import gameplan.Map;
 import players.Player;
 import players.visitor.PlayerVisitor;
 
@@ -12,7 +12,7 @@ public final class Rogue extends Player {
     private int landExtraRounds = helper.getNumberOfRoundsWithoutAmplifier();
     private int numberOfHits = 0;
 
-    private  TypeOfLand land = new TypeOfLand();
+    private Map land = new Map();
     private char[][] gameMap = land.getMap();
     public Rogue(final char type) {
         super(type);
@@ -20,8 +20,8 @@ public final class Rogue extends Player {
         setHp(helper.getHpInitialRogue());
     }
 
-    // check if is a land amplifier or not
-    // and if there are 3 or 6 overtime damage rounds
+    /* check if it is a land amplifier or not
+     and if there are 3 or 6 overtime damage rounds */
     public void extra() {
         if (gameMap[getLineMap()][getColumnMap()] == 'W') {
             landAmplifier = helper.getLandAmplifierR();

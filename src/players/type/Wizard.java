@@ -1,13 +1,13 @@
 package players.type;
 
 import constant.Constants;
-import gameplan.TypeOfLand;
+import gameplan.Map;
 import players.Player;
 import players.visitor.PlayerVisitor;
 
 public final class Wizard extends Player {
     private Constants helper = new Constants();
-    private TypeOfLand land = new TypeOfLand();
+    private Map land = new Map();
     private char[][] gameMap = land.getMap();
     private double landAmplifier = 1.0;
     public Wizard(final char type) {
@@ -20,7 +20,7 @@ public final class Wizard extends Player {
     public void accept(final PlayerVisitor player) {
         player.visit(this);
     }
-    // check if is a land amplifier or not
+    // check if it is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'D') {
             landAmplifier = helper.getLandAmplifierW();

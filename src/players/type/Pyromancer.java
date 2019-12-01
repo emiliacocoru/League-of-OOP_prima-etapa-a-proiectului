@@ -1,7 +1,7 @@
 package players.type;
 
 import constant.Constants;
-import gameplan.TypeOfLand;
+import gameplan.Map;
 import players.Player;
 import players.visitor.PlayerVisitor;
 
@@ -14,10 +14,10 @@ public final class Pyromancer extends Player {
         setHp(helper.getHpInitialPyromancer());
     }
 
-    private TypeOfLand land = new TypeOfLand();
+    private Map land = new Map();
     private char[][] gameMap = land.getMap();
 
-    // check if is a land amplifier or not
+    // check if it is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'V') {
             landAmplifier = helper.getLandAmplifierP();

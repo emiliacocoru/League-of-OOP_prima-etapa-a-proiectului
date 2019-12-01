@@ -1,6 +1,6 @@
 package players.type;
 
-import gameplan.TypeOfLand;
+import gameplan.Map;
 import constant.Constants;
 import players.Player;
 import players.visitor.PlayerVisitor;
@@ -22,9 +22,9 @@ public final  class Knight extends Player {
         player.visit(this);
     }
 
-    private TypeOfLand land = new TypeOfLand();
+    private Map land = new Map();
     private char[][] gameMap = land.getMap();
-    // check if is a land amplifier or not
+    // check if it is a land amplifier or not
     public void landAmplifier() {
         if (gameMap[getLineMap()][getColumnMap()] == 'L') {
             landAmplifier = helper.getLandAmplifierK();
@@ -36,8 +36,8 @@ public final  class Knight extends Player {
                 + helper.getExecuteDamagePerLevel() * getLevel();
         private int execute = 0;
         private int hpLimit = 0;
-        // calculates the minimum hp required for a player
-        // in order not to be killed instantly
+        /* calculates the minimum hp required for a player
+           in order not to be killed instantly */
         public void findHPLimit(final Player player) {
             if (helper.getExecutePercentPerLevel()
                     * player.getLevel() > helper.getExecutePercent()) {

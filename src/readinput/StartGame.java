@@ -1,6 +1,6 @@
 package readinput;
 
-import gameplan.TypeOfLand;
+import gameplan.Map;
 import fileio.implementations.FileReader;
 import players.Player;
 import players.PlayerFactory;
@@ -12,7 +12,7 @@ public final class StartGame {
      private int numberLines;
      private int numberColumns;
      // numberLines + numberColumns = the dimensions of the map
-     private TypeOfLand gameMap;
+     private Map gameMap;
      private int participants;
      private int rounds;
      private ArrayList<Player> players = new ArrayList<>();
@@ -40,7 +40,7 @@ public final class StartGame {
          FileReader fileReader = new FileReader(input);
          numberLines = fileReader.nextInt();
          numberColumns = fileReader.nextInt();
-         gameMap = new TypeOfLand(numberLines, numberColumns);
+         gameMap = new Map(numberLines, numberColumns);
          for (int i = 0; i < numberLines; i++) {
             String typeGround = fileReader.nextWord();
             for (int j = 0; j < numberColumns; j++) {
