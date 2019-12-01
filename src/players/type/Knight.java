@@ -4,11 +4,10 @@ import gameplan.TypeOfLand;
 import constant.Constants;
 
 public final  class Knight extends Player {
-    Constants helper = new Constants();
+    private Constants helper = new Constants();
     private double landAmplifier = 1.0;
-    public Knight(){
+    public Knight() {
         super();
-
     }
     public Knight(final char type) {
         super(type);
@@ -17,37 +16,39 @@ public final  class Knight extends Player {
     }
 
     @Override
-    public void accept(PlayerVisitor player){
+    public void accept(final PlayerVisitor player) {
         player.visit(this);
     }
 
     private TypeOfLand land = new TypeOfLand();
-    private char[][] game_map = land.getMap();
+    private char[][] gameMap = land.getMap();
 
-    public void LandAmplifier() {
-        if (game_map[getLineMap()][getColumnMap()] == 'L') {
+    public void landAmplifier() {
+        if (gameMap[getLineMap()][getColumnMap()] == 'L') {
             landAmplifier = helper.getLandAmplifierK();
         }
     }
 
-    public class Execute implements PlayerVisitor {
-        private int damageExecuteInitial = 200 + 30 * getLevel();
+    public final class Execute implements PlayerVisitor {
+        private int damageExecuteInitial = helper.getExecuteDamage()
+                + helper.getExecuteDamagePerLevel() * getLevel();
         private int execute = 0;
-        private int HPLimit = 0;
+        private int hpLimit = 0;
         public void findHPLimit(final Player player) {
             if (helper.getExecutePercentPerLevel()
                     * player.getLevel() > helper.getExecutePercent()) {
-                HPLimit = (int) Math.round(helper.getExecuteMaxPercent()*(player.getMaxHP()));
+                hpLimit = (int) Math.round(helper.getExecuteMaxPercent() * (player.getMaxHP()));
             } else {
-                HPLimit = (int) Math.round((helper.getExecutePercent()
-                        + helper.getExecutePercentPerLevel() * player.getLevel()) * (player.getMaxHP()));
+                hpLimit = (int) Math.round((helper.getExecutePercent()
+                        + helper.getExecutePercentPerLevel()
+                        * player.getLevel()) * (player.getMaxHP()));
             }
         }
         @Override
         public void visit(final Knight player) {
-            LandAmplifier();
+            landAmplifier();
             findHPLimit(player);
-            if (player.getHp() < HPLimit) {
+            if (player.getHp() < hpLimit) {
                 execute = player.getHp();
                 player.setReceivedDamage(execute);
             } else {
@@ -60,9 +61,9 @@ public final  class Knight extends Player {
 
         @Override
         public void visit(final Pyromancer player) {
-            LandAmplifier();
+            landAmplifier();
             findHPLimit(player);
-            if (player.getHp() < HPLimit) {
+            if (player.getHp() < hpLimit) {
                 execute = player.getHp();
                 player.setReceivedDamage(execute);
             } else {
@@ -75,24 +76,24 @@ public final  class Knight extends Player {
 
         @Override
         public void visit(final Rogue player) {
-            LandAmplifier();
+            landAmplifier();
             findHPLimit(player);
-            if (player.getHp() < HPLimit) {
+            if (player.getHp() < hpLimit) {
                 execute = player.getHp();
                 player.setReceivedDamage(execute);
             } else {
                 execute = (int) Math.round(damageExecuteInitial * landAmplifier
                         * helper.getExecuteAmplifierKR());
-                player.setReceivedDamage((int) Math.round( damageExecuteInitial * landAmplifier));
+                player.setReceivedDamage((int) Math.round(damageExecuteInitial * landAmplifier));
             }
             player.setDamageThisRound(execute);
         }
 
         @Override
         public void visit(final Wizard player) {
-            LandAmplifier();
+            landAmplifier();
             findHPLimit(player);
-            if (player.getHp() < HPLimit) {
+            if (player.getHp() < hpLimit) {
                 execute = player.getHp();
                 player.setReceivedDamage(execute);
             } else {
@@ -105,14 +106,16 @@ public final  class Knight extends Player {
         }
     }
 
-    public class Slam implements PlayerVisitor{
-        private int base_damage = 100 + 40 * getLevel();
+    public final class Slam implements PlayerVisitor {
+        private int baseDamage = helper.getSlamDamage()
+                + helper.getSlamDamagePerLevel() * getLevel();
         private int slam = 0;
         @Override
         public void visit(final Knight player) {
-            LandAmplifier();
-            slam = (int) Math.round(base_damage * helper.getSlamAmplifierKK() * landAmplifier);
-            player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(base_damage * landAmplifier));
+            landAmplifier();
+            slam = (int) Math.round(baseDamage * helper.getSlamAmplifierKK() * landAmplifier);
+            player.setReceivedDamage((player.getReceivedDamage())
+                    + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + slam);
             player.setExtraRounds(0);
             player.setIncapacityOfMovement(1);
@@ -121,9 +124,10 @@ public final  class Knight extends Player {
 
         @Override
         public void visit(final Pyromancer player) {
-            LandAmplifier();
-            slam = (int) Math.round(base_damage * helper.getSlamAmplifierKP() * landAmplifier);
-            player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(base_damage * landAmplifier));
+            landAmplifier();
+            slam = (int) Math.round(baseDamage * helper.getSlamAmplifierKP() * landAmplifier);
+            player.setReceivedDamage((player.getReceivedDamage())
+                    + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + slam);
             player.setExtraRounds(0);
             player.setIncapacityOfMovement(1);
@@ -132,9 +136,10 @@ public final  class Knight extends Player {
 
         @Override
         public void visit(final Rogue player) {
-            LandAmplifier();
-            slam = (int) Math.round(base_damage * helper.getSlamAmplifierKR() * landAmplifier);
-            player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(base_damage * landAmplifier));
+            landAmplifier();
+            slam = (int) Math.round(baseDamage * helper.getSlamAmplifierKR() * landAmplifier);
+            player.setReceivedDamage(player.getReceivedDamage()
+                    + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + slam);
             player.setExtraRounds(0);
             player.setIncapacityOfMovement(1);
@@ -143,9 +148,10 @@ public final  class Knight extends Player {
 
         @Override
         public void visit(final Wizard player) {
-            LandAmplifier();
-            slam = (int) Math.round(base_damage * helper.getSlamAmplifierKW() * landAmplifier);
-            player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(base_damage*landAmplifier));
+            landAmplifier();
+            slam = (int) Math.round(baseDamage * helper.getSlamAmplifierKW() * landAmplifier);
+            player.setReceivedDamage((player.getReceivedDamage())
+                    + (int) Math.round(baseDamage * landAmplifier));
             player.setDamageThisRound(player.getDamageThisRound() + slam);
             player.setExtraRounds(0);
             player.setIncapacityOfMovement(1);

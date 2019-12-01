@@ -88,15 +88,59 @@ public final class Constants {
     private final double executeMaxPercent = 0.4;
 
     private final int paralysisDamage = 40;
-    private final int ParalysisDamagePerLevel = 10 ;
+    private final int paralysisDamagePerLevel = 10;
+    private final int executeDamage = 200;
+    private final int executeDamagePerLevel = 30;
+    private final int slamDamage = 100;
+    private final int slamDamagePerLevel = 40;
+    private final int igniteDamage = 150;
+    private final int igniteDamagePerLevel = 20;
+    private final int roundsExtraDamagePyromancer = 2;
+    private final int damageExtraPyromancer = 50;
+    private final int damageExtraPyromancerPerLevel = 30;
 
+    public int getRoundsExtraDamagePyromancer() {
+        return roundsExtraDamagePyromancer;
+    }
+
+    public int getDamageExtraPyromancer() {
+        return damageExtraPyromancer;
+    }
+
+    public int getDamageExtraPyromancerPerLevel() {
+        return damageExtraPyromancerPerLevel;
+    }
+
+    public int getIgniteDamage() {
+        return igniteDamage;
+    }
+
+    public int getIgniteDamagePerLevel() {
+        return igniteDamagePerLevel;
+    }
+
+    public int getSlamDamage() {
+        return slamDamage;
+    }
+
+    public int getSlamDamagePerLevel() {
+        return slamDamagePerLevel;
+    }
+
+    public int getExecuteDamage() {
+        return executeDamage;
+    }
+
+    public int getExecuteDamagePerLevel() {
+        return executeDamagePerLevel;
+    }
 
     public int getParalysisDamage() {
         return paralysisDamage;
     }
 
     public int getParalysisDamagePerLevel() {
-        return ParalysisDamagePerLevel;
+        return paralysisDamagePerLevel;
     }
 
     public double getExecutePercentPerLevel() {

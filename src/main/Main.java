@@ -2,7 +2,7 @@ package main;
 
 import gameplan.LookingForPlayersInTheSameSpot;
 import gameplan.Move;
-import ReadInput.StartGame;
+import readinput.StartGame;
 import fileio.implementations.FileWriter;
 import players.type.Player;
 
@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class Main {
+public final class Main {
+    private Main() { }
+
     public static void main(final String[] args) throws IOException {
         String input = args[0];
         String output = args[1];
-        StartGame startGame = new StartGame();
+        StartGame startGame = new StartGame(); //stricat
         startGame.readInput(input);
         FileWriter fileWriter = new FileWriter(output);
         ArrayList<Player> players = startGame.getPlayers();
@@ -28,11 +30,12 @@ public class Main {
                 if (players.get(j).getIncapacityOfMovement() == 0) {
                     moves.move(players.get(j), movesRounds.get(i).charAt(j));
                 } else {
-                    players.get(j).setIncapacityOfMovement(players.get(j).getIncapacityOfMovement() - 1);
+                    players.get(j).setIncapacityOfMovement(players.get(j).getIncapacityOfMovement()
+                            - 1);
                 }
             }
             for (int w = 0; w < participants; w++) {
-                players.get(w).ExtraD(players.get(w));
+                players.get(w).poisonDamage(players.get(w));
                 if (players.get(w).getHp() <= 0) {
                     players.get(w).setDead(1);
                 }
@@ -41,38 +44,8 @@ public class Main {
             for (Player x : players) {
                 x.setWasFighting(0);
             }
-            System.out.println();
-            System.out.println("RUNDA " + i);
-            for (Player x : players) {
-                if (x.getDead() == 0) {
-                    System.out.print(x.getType() + " ");
-                    System.out.print(x.getLevel() + " ");
-                    System.out.print(x.getXp() + " ");
-                    System.out.print(x.getHp() + " ");
-                    System.out.print(x.getLineMap() + " ");
-                    System.out.print(x.getColumnMap());
-                    System.out.println();
-                } else {
-                    System.out.print(x.getType() + " dead");
-                    System.out.println();
-                }
-                }
             }
-            System.out.println("final:");
-            for (Player x : players) {
-                if (x.getDead() == 0) {
-                    System.out.print(x.getType() + " ");
-                    System.out.print(x.getLevel() + " ");
-                    System.out.print(x.getXp() + " ");
-                    System.out.print(x.getHp() + " ");
-                    System.out.print(x.getLineMap() + " ");
-                    System.out.print(x.getColumnMap());
-                    System.out.println();
-                } else {
-                    System.out.println(x.getType() + " " + "dead");
-                }
 
-        }
         for (Player x : players) {
             if (x.getDead() == 0) {
                 fileWriter.writeWord(x.getType() + " ");

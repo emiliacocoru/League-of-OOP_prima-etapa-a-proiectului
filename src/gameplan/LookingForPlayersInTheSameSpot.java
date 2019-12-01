@@ -16,7 +16,8 @@ public final class LookingForPlayersInTheSameSpot {
             if (firstPlayer.getWasFighting() == 0 && firstPlayer.getDead() == 0) {
                 for (int q = players.size() - 1; q >= 0; q--) {
                     secondPlayer = players.get(q);
-                    if (secondPlayer.getWasFighting() == 0 && secondPlayer.getDead() == 0 && p != q) {
+                    if ((secondPlayer.getWasFighting() == 0)
+                            && secondPlayer.getDead() == 0 && p != q) {
                         if (firstPlayer.getLineMap() == secondPlayer.getLineMap()) {
                             if (firstPlayer.getColumnMap() == secondPlayer.getColumnMap()) {
                                 secondPlayer.setWasFighting(1);

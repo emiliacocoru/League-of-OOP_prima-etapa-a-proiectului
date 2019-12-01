@@ -1,16 +1,17 @@
-package ReadInput;
+package readinput;
 
 import gameplan.TypeOfLand;
 import fileio.implementations.FileReader;
-import players.type.*;
+import players.type.Player;
+import players.type.PlayerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class StartGame {
+public final class StartGame {
      private int numberLines;
      private int numberColumns;
-     private TypeOfLand game_map;
+     private TypeOfLand gameMap;
      private int participants;
      private int rounds;
      private ArrayList<Player> players = new ArrayList<>();
@@ -23,8 +24,8 @@ public class StartGame {
         return numberColumns;
     }
 
-    public TypeOfLand getGame_map() {
-        return game_map;
+    public TypeOfLand getGameMap() {
+        return gameMap;
     }
 
     public int getParticipants() {
@@ -44,36 +45,34 @@ public class StartGame {
     }
 
 
-    public void readInput(String input) throws IOException {
+    public void readInput(final String input) throws IOException {
          FileReader fileReader = new FileReader(input);
         numberLines = fileReader.nextInt();
         numberColumns = fileReader.nextInt();
-        game_map = new TypeOfLand(numberLines,numberColumns);
+        gameMap = new TypeOfLand(numberLines, numberColumns);
         for (int i = 0; i < numberLines; i++) {
 
-            String Type_ground = fileReader.nextWord();
-            //System.out.println(Type_ground);
-            for (int j = 0; j < numberColumns ; j++){
-                game_map.updateMap(i, j, Type_ground.charAt(j));
+            String typeGround = fileReader.nextWord();
+            for (int j = 0; j < numberColumns; j++) {
+                gameMap.updateMap(i, j, typeGround.charAt(j));
             }
         }
 
         participants = fileReader.nextInt(); // number of players
-        Player player = null ;
-        PlayerFactory playercategory = new PlayerFactory();
-        for(int i = 0; i < participants; i++){
+        Player player = null;
+        PlayerFactory playerCategory = new PlayerFactory();
+        for (int i = 0; i < participants; i++) {
             String typePlayer = fileReader.nextWord();
-            player =playercategory.createPlayer(typePlayer.charAt(0));
+            player = playerCategory.createPlayer(typePlayer.charAt(0));
             player.setLineMap(fileReader.nextInt());
             player.setColumnMap(fileReader.nextInt());
             players.add(player);
         }
          rounds = fileReader.nextInt(); // number of rounds
-         for (int i = 0; i < rounds; i++){
+         for (int i = 0; i < rounds; i++) {
              String roundMoves = fileReader.nextWord();
              moves.add(roundMoves);
          }
-     }
-
+    }
 }
 

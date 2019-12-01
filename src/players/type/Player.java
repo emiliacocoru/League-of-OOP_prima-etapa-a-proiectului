@@ -5,7 +5,7 @@ public abstract class Player {
     private int hp;
     private int xp = 0;
     private int level = 0;
-    private int MaxHP;
+    private int maxHP;
     private int lineMap;
     private int columnMap;
     private int damageExtra = 0;
@@ -16,131 +16,132 @@ public abstract class Player {
     private int wasFighting = 0;
     private int dead = 0;
 
-    public Player(char type){
+    public Player(final char type) {
         this.type = type;
     }
+
     public Player() {
 
     }
 
-    public char getType() {
+    public final char getType() {
         return type;
     }
 
-    public int getHp() {
+    public final int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public final void setHp(final int hp) {
         this.hp = hp;
     }
 
-    public void setType(char type) {
+    public final void setType(final char type) {
         this.type = type;
     }
 
-    public int getLineMap() {
+    public final int getLineMap() {
         return lineMap;
     }
 
-    public int getColumnMap() {
+    public final int getColumnMap() {
         return columnMap;
     }
 
-    public void setLineMap(int lineMap) {
+    public final void setLineMap(final int lineMap) {
         this.lineMap = lineMap;
     }
 
-    public void setColumnMap(int columnMap) {
+    public final void setColumnMap(final int columnMap) {
         this.columnMap = columnMap;
     }
 
-    public int getXp() {
+    public final int getXp() {
         return xp;
     }
 
-    public void setXp(int xp) {
+    public final void setXp(final int xp) {
         this.xp = xp;
     }
 
-    public int getLevel() {
+    public final int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public final void setLevel(final int level) {
         this.level = level;
     }
 
-    public int getMaxHP() {
-        return MaxHP;
+    public final int getMaxHP() {
+        return maxHP;
     }
 
-    public void setMaxHP(int maxHP) {
-        MaxHP = maxHP;
+    public final void setMaxHP(final int maxHP) {
+        this.maxHP = maxHP;
     }
 
     public abstract void accept(PlayerVisitor player);
 
-    public void ExtraD(Player player) {
+    public final void poisonDamage(final Player player) {
         if (player.getExtraRounds() > 0) {
             player.setHp(player.getHp() - player.getDamageExtra());
             player.setExtraRounds(player.getExtraRounds() - 1);
         }
     }
 
-    public int getDamageExtra() {
+    public final int getDamageExtra() {
         return damageExtra;
     }
 
-    public void setDamageExtra(int damageExtra) {
+    public final void setDamageExtra(final int damageExtra) {
         this.damageExtra = damageExtra;
     }
 
-    public int getExtraRounds() {
+    public final int getExtraRounds() {
         return extraRounds;
     }
 
-    public void setExtraRounds(int extraRounds) {
+    public final void setExtraRounds(final int extraRounds) {
         this.extraRounds = extraRounds;
     }
 
-    public int getDamageThisRound() {
+    public final  int getDamageThisRound() {
         return damageThisRound;
     }
 
-    public void setDamageThisRound(int damageThisRound) {
+    public final void setDamageThisRound(final int damageThisRound) {
         this.damageThisRound = damageThisRound;
     }
 
-    public double getReceivedDamage() {
+    public final double getReceivedDamage() {
         return receivedDamage;
     }
 
-    public void setReceivedDamage(double receivedDamage) {
+    public final void setReceivedDamage(final double receivedDamage) {
         this.receivedDamage = receivedDamage;
     }
 
-    public int getIncapacityOfMovement() {
+    public final int getIncapacityOfMovement() {
         return incapacityOfMovement;
     }
 
-    public void setIncapacityOfMovement(int incapacityOfMovement) {
+    public final void setIncapacityOfMovement(final int incapacityOfMovement) {
         this.incapacityOfMovement = incapacityOfMovement;
     }
 
-    public int getWasFighting() {
+    public final int getWasFighting() {
         return wasFighting;
     }
 
-    public void setWasFighting(int wasFighting) {
+    public final void setWasFighting(final int wasFighting) {
         this.wasFighting = wasFighting;
     }
 
-    public int getDead() {
+    public final int getDead() {
         return dead;
     }
 
-    public void setDead(int dead) {
+    public final void setDead(final int dead) {
         this.dead = dead;
     }
 }

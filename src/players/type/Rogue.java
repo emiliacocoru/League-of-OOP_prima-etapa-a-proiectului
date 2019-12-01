@@ -42,72 +42,77 @@ public final class Rogue extends Player {
         player.visit(this);
     }
 
-     public class BackStab implements PlayerVisitor {
-        private int baseDamageInitial = helper.getBachStabBaseDamage()
+     public final class BackStab implements PlayerVisitor {
+        private int damageInitial = helper.getBachStabBaseDamage()
                  + helper.getBacKStabBaseDamagePerLevel() * getLevel();
         private int backStabDamage = 0;
         private double percent = 1.0;
 
-        public double backStabWithBonus(double percent) {
+        public void backStabWithBonus() {
             if (numberOfHits % helper.getHitsNumber() == 0) {
                 if (gameMap[getLineMap()][getColumnMap()] == 'W') {
                     percent = helper.getPercentBonusRogue();
+                } else {
+                    percent = 1;
                 }
+            } else {
+                percent = 1;
             }
             numberOfHits++;
-            return percent;
         }
          @Override
          public void visit(final Knight player) {
              extra();
-             percent = backStabWithBonus(percent);
-             backStabDamage = (int) Math.round(baseDamageInitial * percent
-                      * helper.getBackStabAmplifierRK()* landAmplifier);
-             player.setReceivedDamage((int) Math.round(baseDamageInitial * landAmplifier));
+             backStabWithBonus();
+             backStabDamage = (int) Math.round(damageInitial * percent
+                      * helper.getBackStabAmplifierRK() * landAmplifier);
+             player.setReceivedDamage((int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
          @Override
          public void visit(final Pyromancer player) {
              extra();
-             percent = backStabWithBonus(percent);
-             backStabDamage = (int) Math.round(baseDamageInitial * percent
-                     * helper.getBackStabAmplifierRP()* landAmplifier);
-             player.setReceivedDamage((int) Math.round(baseDamageInitial * percent * landAmplifier));
+             backStabWithBonus();
+             backStabDamage = (int) Math.round(damageInitial * percent
+                     * helper.getBackStabAmplifierRP() * landAmplifier);
+             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
          @Override
          public void visit(final Rogue player) {
              extra();
-             percent = backStabWithBonus(percent);
-             backStabDamage = (int) Math.round(baseDamageInitial * percent
-                     * helper.getBackStabAmplifierRR()* landAmplifier);
-             player.setReceivedDamage((int) Math.round(baseDamageInitial * percent * landAmplifier));
+             backStabWithBonus();
+             backStabDamage = (int) Math.round(damageInitial * percent
+                     * helper.getBackStabAmplifierRR() * landAmplifier);
+             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
 
          @Override
          public void visit(final Wizard player) {
              extra();
-             percent = backStabWithBonus(percent);
-             backStabDamage = (int) Math.round(baseDamageInitial * percent
-                     * helper.getBackStabAmplifierRW()* landAmplifier);
-             player.setReceivedDamage((int) Math.round(baseDamageInitial * percent * landAmplifier));
+             backStabWithBonus();
+             backStabDamage = (int) Math.round(damageInitial * percent
+                     * helper.getBackStabAmplifierRW() * landAmplifier);
+             player.setReceivedDamage((int) Math.round(damageInitial * percent * landAmplifier));
              player.setDamageThisRound(backStabDamage);
          }
      }
 
-     public class Paralysis implements PlayerVisitor{
-         private int damage_initial = helper.getParalysisDamage() + helper.getParalysisDamagePerLevel() * getLevel();
+     public final class Paralysis implements PlayerVisitor {
+         private int damageInitial = (helper.getParalysisDamage())
+                 + helper.getParalysisDamagePerLevel() * getLevel();
          private int damageParalysis = 0;
 
          @Override
          public void visit(final Knight player) {
              extra();
-             damageParalysis = (int) Math.round(damage_initial *
-                     helper.getParalysisAmplifierRK() * landAmplifier);
-             player.setReceivedDamage(player.getReceivedDamage() + (int)Math.round(damage_initial * landAmplifier));
+             damageParalysis = (int) Math.round(damageInitial
+                     * helper.getParalysisAmplifierRK() * landAmplifier);
+             player.setReceivedDamage(player.getReceivedDamage()
+                     + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
@@ -117,11 +122,12 @@ public final class Rogue extends Player {
          @Override
          public void visit(final Pyromancer player) {
              extra();
-             damageParalysis = (int) Math.round(damage_initial *
-                     helper.getParalysisAmplifierRP() * landAmplifier);
+             damageParalysis = (int) Math.round(damageInitial
+                     * helper.getParalysisAmplifierRP() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(damage_initial * landAmplifier));
+             player.setReceivedDamage((player.getReceivedDamage())
+                     + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);
          }
@@ -129,11 +135,12 @@ public final class Rogue extends Player {
          @Override
          public void visit(final Rogue player) {
              extra();
-             damageParalysis = (int) Math.round(damage_initial *
-                     helper.getParalysisAmplifierRR() * landAmplifier);
+             damageParalysis = (int) Math.round(damageInitial
+                     * helper.getParalysisAmplifierRR() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(damage_initial * landAmplifier));
+             player.setReceivedDamage((player.getReceivedDamage())
+                     + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);
 
@@ -142,11 +149,12 @@ public final class Rogue extends Player {
          @Override
          public void visit(final Wizard player) {
              extra();
-             damageParalysis = (int) Math.round(damage_initial *
-                     helper.getBackStabAmplifierRW() * landAmplifier);
+             damageParalysis = (int) Math.round(damageInitial
+                    * helper.getBackStabAmplifierRW() * landAmplifier);
              player.setDamageExtra(damageParalysis);
              player.setExtraRounds(landExtraRounds);
-             player.setReceivedDamage(player.getReceivedDamage() + (int) Math.round(damage_initial * landAmplifier));
+             player.setReceivedDamage((player.getReceivedDamage())
+                     + (int) Math.round(damageInitial * landAmplifier));
              player.setDamageThisRound(player.getDamageThisRound() + damageParalysis);
              player.setIncapacityOfMovement(landExtraRounds);
          }

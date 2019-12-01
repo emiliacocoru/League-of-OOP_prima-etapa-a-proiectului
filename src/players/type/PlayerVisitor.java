@@ -1,8 +1,8 @@
 package players.type;
 
 public interface PlayerVisitor {
-    public void visit(Knight player);
-    public void visit(Pyromancer player);
-    public void visit(Rogue player);
-    public void visit(Wizard player);
+    void visit(Knight player);
+    void visit(Pyromancer player);
+    void visit(Rogue player);
+    void visit(Wizard player);
 }
