@@ -4,7 +4,7 @@ import gameplan.LookingForPlayersInTheSameSpot;
 import gameplan.Move;
 import readinput.StartGame;
 import fileio.implementations.FileWriter;
-import players.type.Player;
+import players.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;

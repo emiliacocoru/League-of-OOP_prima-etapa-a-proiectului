@@ -2,8 +2,8 @@ package readinput;
 
 import gameplan.TypeOfLand;
 import fileio.implementations.FileReader;
-import players.type.Player;
-import players.type.PlayerFactory;
+import players.Player;
+import players.PlayerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;

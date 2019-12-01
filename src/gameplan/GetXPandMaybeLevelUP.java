@@ -1,7 +1,7 @@
 package gameplan;
 
 import constant.Constants;
-import players.type.Player;
+import players.Player;
 
 public final class GetXPandMaybeLevelUP {
     private Constants helper = new Constants();

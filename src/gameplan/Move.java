@@ -1,6 +1,6 @@
 package gameplan;
 
-import players.type.Player;
+import players.Player;
 
 public final class Move {
 

@@ -2,6 +2,8 @@ package players.type;
 
 import constant.Constants;
 import gameplan.TypeOfLand;
+import players.Player;
+import players.visitor.PlayerVisitor;
 
 
 public final class Rogue extends Player {

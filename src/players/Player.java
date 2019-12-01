@@ -1,4 +1,6 @@
-package players.type;
+package players;
+
+import players.visitor.PlayerVisitor;
 
 public abstract class Player {
     private char type;

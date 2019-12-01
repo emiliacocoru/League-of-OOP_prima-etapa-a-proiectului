@@ -1,6 +1,6 @@
 package gameplan;
 
-import players.type.Player;
+import players.Player;
 
 import java.util.ArrayList;
 

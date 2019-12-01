@@ -2,6 +2,8 @@ package players.type;
 
 import gameplan.TypeOfLand;
 import constant.Constants;
+import players.Player;
+import players.visitor.PlayerVisitor;
 
 public final  class Knight extends Player {
     private Constants helper = new Constants();

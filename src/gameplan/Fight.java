@@ -4,7 +4,7 @@ import players.type.Knight;
 import players.type.Pyromancer;
 import players.type.Rogue;
 import players.type.Wizard;
-import players.type.Player;
+import players.Player;
 
 public final class Fight {
     public void fight(final Player firstPlayer, final Player secondPlayer) {
