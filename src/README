@@ -42,7 +42,3 @@ Proiectul este structurat astfel:
 |		-->class PlayerFactory(imi creeaza tipul de jucator in functie de caracterul sau)
 |
 -readinput-->class StartGame(imi preia datele din fisierul "something.in");
-
-Legat de Git, am incercat sa folosesc GitLab, dar imi spunea ca nu am anumite drepturi (sau cel
-putin eu asta am inteles din ce imi aparea acolo) si mi-am dat seama destul de tarziu
-(mult prea tarziu chiar) cum sa folosesc combinatia Git IntelliJ si GitHub.
